@@ -1,12 +1,17 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
 var cKey map[string]string
 
 func init() {
 	cKey = make(map[string]string)
 	//simpleNumber()
-	simpleTranspose()
-
+	//simpleTranspose()
+	randomTranspose()
 }
 func simpleNumber() {
 	cKey["A"] = "01"
@@ -64,4 +69,17 @@ func simpleTranspose() {
 	cKey["X"] = "Y"
 	cKey["Y"] = "K"
 	cKey["Z"] = "A"
+}
+
+func randomTranspose() {
+	rand.Seed(time.Now().UTC().UnixNano())
+	letters := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	mixed := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	for i := range mixed {
+		j := rand.Intn(i + 1)
+		mixed[i], mixed[j] = mixed[j], mixed[i]
+	}
+	for k, v := range letters {
+		cKey[v] = mixed[k]
+	}
 }
