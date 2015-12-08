@@ -56,17 +56,20 @@ func main() {
 		fmt.Printf("%s", " ")
 	}
 	fmt.Println("")
-
+	encryptedWords := []string{}
 	for _, w := range words {
+		ew := ""
 		for _, letter := range w {
-			fmt.Printf("%s", encryptWord(string(letter)))
+			fmt.Printf("%s", encryptLetter(string(letter)))
+			ew += fmt.Sprintf("%s", encryptLetter(string(letter)))
 		}
+		encryptedWords = append(encryptedWords, ew)
 		fmt.Printf("%s", " ")
 	}
 	fmt.Println("")
 }
 
-func encryptWord(w string) string {
+func encryptLetter(w string) string {
 	c, _ := cKey[w]
 	return c
 }
