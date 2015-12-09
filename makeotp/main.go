@@ -22,7 +22,7 @@ func main() {
 func makeotp(path string, otp [1000]int) {
 	var file *os.File
 	var err error
-	if file, err = os.Create(path); err != nil {
+	if file, err = os.Create(fmt.Sprintf("pads/%s", path)); err != nil {
 		panic(err)
 	}
 	defer file.Close()
