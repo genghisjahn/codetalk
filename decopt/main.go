@@ -35,19 +35,14 @@ func main() {
 		if d < 0 {
 			d = 26 + d
 		}
-		// fmt.Println(t, o, d, outkey[d])
-		outputmsg += outkey[d]
+		if outkey[d] == "X" {
+			outputmsg += " "
+		} else {
+			outputmsg += outkey[d]
+		}
 	}
 	fmt.Println("Decrypted message:")
-	for k, v := range outputmsg {
-		if (k)%5 == 0 && k != 0 {
-			if (k)%25 == 0 {
-				fmt.Printf("\n")
-			} else {
-				fmt.Printf(" ")
-			}
-		}
-
+	for _, v := range outputmsg {
 		fmt.Printf("%s", string(v))
 	}
 	fmt.Printf("\n")
