@@ -54,8 +54,8 @@ func main() {
 		keyVal := ckey[key]
 		msgVal := ckey[string(v)]
 		output := (keyVal + msgVal) % 26
-		if (k+1)%5 == 0 {
-			if (k+1)%25 == 0 {
+		if (k)%5 == 0 && k != 0 {
+			if (k)%25 == 0 {
 				outputmsg += "\n"
 			} else {
 				outputmsg += " "
@@ -73,7 +73,7 @@ func main() {
 func createfile(path, msg string) {
 	var file *os.File
 	var err error
-	if file, err = os.Create(fmt.Sprintf("output/%s.msg", path)); err != nil {
+	if file, err = os.Create(fmt.Sprintf("output/%s", path)); err != nil {
 		panic(err)
 	}
 	defer file.Close()
