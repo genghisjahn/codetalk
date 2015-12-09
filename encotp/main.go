@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 )
 
 var ckey = map[string]int{"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26}
@@ -63,7 +64,22 @@ func main() {
 		outputmsg += outkey[output]
 
 	}
+	filename := fmt.Sprintf("useonce-%s.msg", time.Now().Format("20060102150405"))
+
 	fmt.Println(outputmsg)
-	fmt.Println(string(outputmsg[0]))
+	createfile(filename, outputmsg)
+
+}
+func createfile(path, msg string) {
+	var file *os.File
+	var err error
+	if file, err = os.Create(fmt.Sprintf("output/%s.msg", path)); err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	_, errWrite := file.WriteString(msg)
+	if errWrite != nil {
+		fmt.Println(errWrite)
+	}
 
 }
