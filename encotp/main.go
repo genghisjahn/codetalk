@@ -64,7 +64,7 @@ func main() {
 		outputmsg += outkey[output]
 
 	}
-	filename := fmt.Sprintf("useonce-%s.msg", time.Now().Format("20060102150405"))
+	filename := fmt.Sprintf("encrypted-%s.msg", time.Now().Format("20060102150405"))
 
 	fmt.Println(outputmsg)
 	createfile(filename, outputmsg)
